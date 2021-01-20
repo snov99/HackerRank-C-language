@@ -23,7 +23,14 @@ int main()
     total_number_of_books = (int*) malloc(total_number_of_shelves * sizeof(int));
     for (int i=0;i<total_number_of_shelves;i++) total_number_of_books[i] = 0;
     
-    
+    int r = total_number_of_shelves;
+    int c = 1100;
+    total_number_of_pages = (int **)malloc(r * sizeof(int *)); 
+    for (int i=0; i<r; i++) 
+    {
+        total_number_of_pages[i] = (int *)malloc(c * sizeof(int));
+        for (int j=0; j<c ; j++) total_number_of_pages[i][j] = 0;
+    }    
     while (total_number_of_queries--) {
         int type_of_query;
         scanf("%d", &type_of_query);
@@ -31,7 +38,10 @@ int main()
         if (type_of_query == 1) {
             int x, y;
             scanf("%d %d", &x, &y);
-            total_number_of_books[x-1]++;
+            total_number_of_books[x]++;
+            int index = total_number_of_books[x] - 1;
+            total_number_of_pages[x][index] = y;
+            
             
         } else if (type_of_query == 2) {
             int x, y;
