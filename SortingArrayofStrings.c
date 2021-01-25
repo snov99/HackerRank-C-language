@@ -26,8 +26,6 @@ int dis_char_count(const char* a)
     return count;
 }
 
-
-
 int lexicographic_sort(const char* a, const char* b) //a<b
 {
     int i = 0, a_tot = 0, b_tot = 0;
@@ -37,8 +35,8 @@ int lexicographic_sort(const char* a, const char* b) //a<b
         if (i<strlen(b))
             b_tot += (int) b[i];
         i++;
-        if (i> (strlen(a)>strlen(b)) ? strlen(a):strlen(b))
-            //printf("same strings\n");
+        int max = (strlen(a)>strlen(b)) ? strlen(a):strlen(b);
+        if (i > max)
             break;
     } while (a_tot == b_tot);
     
@@ -100,10 +98,9 @@ int main()
     scanf("%d", &n);
   
     char** arr;
-	  arr = (char**)malloc(n * sizeof(char*));
+	arr = (char**)malloc(n * sizeof(char*));
   
-    for(int i = 0; i < n; i++)
-    {
+    for(int i = 0; i < n; i++){
         *(arr + i) = malloc(1024 * sizeof(char));
         scanf("%s", *(arr + i));
         *(arr + i) = realloc(*(arr + i), strlen(*(arr + i)) + 1);
